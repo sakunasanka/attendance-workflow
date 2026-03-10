@@ -25,7 +25,7 @@ async function fetchAttendanceData(date) {
   log('📡', `Fetching attendance for ${date}...`);
   const url = `${config.ATTENDANCE_API_URL}/daily_students_attendance_by_parent_org/${config.PARENT_ORG_ID}?date=${date}`;
   const res = await axios.get(url, {
-    timeout: 15000,
+    timeout: 150000,
     headers: { 'api-key': config.ATTENDANCE_API_KEY },
   });
   log('✅', `Got ${res.data.length} class records`);
@@ -37,7 +37,7 @@ async function fetchLateData(date) {
   const url = `${config.ATTENDANCE_API_URL}/organizations/${config.PARENT_ORG_ID}/late-attendance-summary?date=${date}&activity_id=${config.ACTIVITY_ID}`;
   try {
     const res = await axios.get(url, {
-      timeout: 15000,
+      timeout: 150000,
       headers: { 'api-key': config.ATTENDANCE_API_KEY },
     });
     const total = res.data.reduce((s, i) => s + (i.student_count || 0), 0);
@@ -120,12 +120,12 @@ async function sendWhatsApp(imageUrl, date) {
     axios.post(
       `${config.ATTENDANCE_API_URL}/whatsapp/send/image`,
       { ...payload, to: config.WHATSAPP_TO_1 },
-      { headers: { 'Content-Type': 'application/json', 'api-key': config.ATTENDANCE_API_KEY }, timeout: 15000 }
+      { headers: { 'Content-Type': 'application/json', 'api-key': config.ATTENDANCE_API_KEY }, timeout: 150000 }
     ),
     axios.post(
       `${config.ATTENDANCE_API_URL}/whatsapp/send/image`,
       { ...payload, to: config.WHATSAPP_TO_2 },
-      { headers: { 'Content-Type': 'application/json', 'api-key': config.ATTENDANCE_API_KEY }, timeout: 15000 }
+      { headers: { 'Content-Type': 'application/json', 'api-key': config.ATTENDANCE_API_KEY }, timeout: 150000 }
     ),
   ]);
 
