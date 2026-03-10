@@ -34,10 +34,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       # 3. Install dependencies (Puppeteer will download Chromium automatically)
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # 4. Run the pipeline
       - name: Run attendance pipeline
