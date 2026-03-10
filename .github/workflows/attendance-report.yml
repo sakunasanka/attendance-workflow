@@ -37,8 +37,15 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable    
+
       # 3. Install dependencies (Puppeteer will download Chromium automatically)
       - name: Install dependencies
+        env:
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
         run: npm ci
 
       # 4. Run the pipeline
