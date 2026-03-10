@@ -55,14 +55,8 @@ async function fetchLateData(date) {
 async function takeScreenshot(htmlContent) {
   log('📸', 'Launching headless browser...');
   const browser = await puppeteer.launch({
-    executablePath: process.env.GITHUB_ACTIONS ? '/usr/bin/google-chrome' : undefined,
-    args: [
-      '--no-sandbox', 
-      '--disable-setuid-sandbox', 
-      '--disable-dev-shm-usage',
-      '--disable-gpu'           
-    ],
-    headless: 'new'     
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
   });
 
   try {
