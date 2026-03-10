@@ -9,7 +9,6 @@ module.exports = {
 
   // API Keys
   ATTENDANCE_API_KEY:  process.env.ATTENDANCE_API_KEY,
-  MAINTENANCE_API_KEY: process.env.MAINTENANCE_API_KEY,
 
   // Org & activity config
   PARENT_ORG_ID: process.env.PARENT_ORG_ID ? parseInt(process.env.PARENT_ORG_ID) : 2,
@@ -21,5 +20,5 @@ module.exports = {
 
   // Cron schedule — default: every day at 10:00 AM (Sri Lanka time)
   // Format: 'second minute hour dayOfMonth month dayOfWeek'
-  CRON_SCHEDULE: process.env.CRON_SCHEDULE,
+  CRON_SCHEDULE: '0 31 15 * * *',
 };
