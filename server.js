@@ -1,7 +1,6 @@
-// server.js — Express server + cron scheduler
+// server.js — Express server
 
 const express = require('express');
-const cron    = require('node-cron');
 const config  = require('./config');
 const { runPipeline } = require('./pipeline');
 
@@ -18,7 +17,6 @@ app.get('/health', (req, res) => {
     service:   'Attendance Report Service',
     status:    'running',
     port:      config.PORT,
-    schedule:  config.CRON_SCHEDULE,
     timestamp: new Date().toISOString(),
   });
 });
@@ -73,17 +71,7 @@ app.get('/preview', async (req, res) => {
   }
 });
 
-// ─────────────────────────────────────────────
-// Cron Scheduler — Default: 10:00 AM daily
-// ─────────────────────────────────────────────
-console.log(`\n⏰ Scheduling cron: "${config.CRON_SCHEDULE}" (10:00 AM daily)`);
-cron.schedule(config.CRON_SCHEDULE, () => {
-  const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Colombo' });
-  console.log(`\n🔔 Cron fired at ${now}`);
-  runPipeline().catch(err => console.error('Cron pipeline error:', err.message));
-}, {
-  timezone: 'Asia/Colombo', // Sri Lanka time — change if needed
-});
+
 
 // ─────────────────────────────────────────────
 // Start
@@ -103,9 +91,11 @@ app.listen(config.PORT, () => {
   console.log(`    POST /run  { "date": "YYYY-MM-DD" }  — Specific date`);
   console.log(`    GET  /run             — Same, browser-friendly`);
   console.log('');
-  console.log(`  ⏰  Daily cron: ${config.CRON_SCHEDULE}  (10:00 AM Asia/Colombo)`);
-  console.log('');
   console.log('  Config:');
   console.log(`    Attendance API : ${config.ATTENDANCE_API_URL}`);
   console.log('');
+
+  // Run the pipeline once immediately on startup
+  console.log('▶  Running pipeline on startup...');
+  runPipeline().catch(err => console.error('Startup pipeline error:', err.message));
 });
