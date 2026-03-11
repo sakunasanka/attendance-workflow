@@ -55,15 +55,8 @@ async function fetchLateData(date) {
 async function takeScreenshot(htmlContent) {
   log('📸', 'Launching headless browser...');
   const browser = await puppeteer.launch({
-    headless: 'new', // This is correct for Puppeteer 20+
-    args: [
-      '--no-sandbox', 
-      '--disable-setuid-sandbox', 
-      '--disable-dev-shm-usage',
-      '--disable-gpu', // Recommended for Linux containers
-    ],
-    // This tells Puppeteer to ignore any system-wide Chrome and use the one in your project
-    ignoreDefaultArgs: ['--disable-extensions'], 
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
   });
 
   try {

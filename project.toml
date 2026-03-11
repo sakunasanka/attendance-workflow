@@ -1,4 +1,0 @@
-[[build].buildpacks]
-  uri = "gcr.io/paketo-buildpacks/nodejs"
-[[build].buildpacks]
-  uri = "https://github.com/dtinth/puppeteer-buildpack"
