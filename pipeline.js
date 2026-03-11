@@ -71,7 +71,8 @@ async function takeScreenshot(htmlContent) {
     const bodyHeight = await page.evaluate(() => document.body.scrollHeight);
     await page.setViewport({ width: 600, height: bodyHeight, deviceScaleFactor: 2 });
 
-    const screenshot = await page.screenshot({ type: 'png', fullPage: true });
+    const screenshotData = await page.screenshot({ type: 'png', fullPage: true });
+    const screenshot = Buffer.from(screenshotData);
     log('✅', `Screenshot taken — ${(screenshot.length / 1024).toFixed(1)} KB`);
     return screenshot;
   } finally {

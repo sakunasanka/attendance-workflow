@@ -20,5 +20,5 @@ module.exports = {
 
   // Cron schedule — default: every day at 10:00 AM (Sri Lanka time)
   // Format: 'second minute hour dayOfMonth month dayOfWeek'
-  CRON_SCHEDULE: '0 31 15 * * *',
+  CRON_SCHEDULE: '0 41 08 * * *',
 };

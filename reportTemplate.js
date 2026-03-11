@@ -363,7 +363,7 @@ function generateReport({ attendanceData, lateData, date }) {
           transform="rotate(-90 90 90)"/>
       </svg>
       <div class="donut-center">
-        <div class="donut-number">${presentCount}</div>
+        <div class="donut-number">${totalLate}</div>
         <div class="donut-of">of ${totalStudents}</div>
       </div>
     </div>
