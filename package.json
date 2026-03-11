@@ -2,7 +2,7 @@
   "name": "attendance-report-service",
   "version": "1.0.0",
   "description": "Daily attendance report generator - screenshot to Cloudinary to WhatsApp",
-  "main": "server.js",
+  "main": "run.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
