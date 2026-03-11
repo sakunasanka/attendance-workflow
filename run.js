@@ -6,6 +6,15 @@ const { runPipeline } = require('./pipeline');
 
 const date = (process.argv[2] && process.argv[2].trim()) || null;
 
+// Hard timeout — force-exit after 5 minutes in case any async handle
+// (e.g. axios keep-alive socket) prevents the event loop from draining.
+const MAX_RUNTIME_MS = 5 * 60 * 1000;
+const killer = setTimeout(() => {
+  console.error('\n⏱️  Hard timeout reached — forcing exit');
+  process.exit(1);
+}, MAX_RUNTIME_MS);
+killer.unref(); // don't let this timer itself keep the process alive
+
 runPipeline(date)
   .then(result => {
     if (!result.success && result.error !== 'No attendance data') {
