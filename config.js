@@ -18,7 +18,13 @@ module.exports = {
   WHATSAPP_TO_1: process.env.WHATSAPP_TO_1,
   WHATSAPP_TO_2: process.env.WHATSAPP_TO_2,
 
+  // Email (Nodemailer + Gmail)
+  EMAIL_FROM:         process.env.EMAIL_FROM,
+  EMAIL_APP_PASSWORD: process.env.EMAIL_APP_PASSWORD,
+  EMAIL_TO_1:         process.env.EMAIL_TO_1,
+  EMAIL_TO_2:         process.env.EMAIL_TO_2,
+
   // Cron schedule — default: every day at 10:00 AM (Sri Lanka time)
   // Format: 'second minute hour dayOfMonth month dayOfWeek'
-  CRON_SCHEDULE: '0 41 08 * * *',
+  CRON_SCHEDULE: '0 28 14 * * *',
 };
